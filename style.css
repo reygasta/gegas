@@ -1,0 +1,249 @@
+/* Reset CSS dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* === Variabel Warna (Light & Dark Mode) === */
+:root {
+    /* Mode Terang (Default) */
+    --bg-dominant: #6A9C89;
+    --bg-accent: #16423C;
+    --text-primary: #E9EFEC;
+    --text-secondary: #C4DAD2;
+    --card-bg: #6A9C89;
+    --cta-bg: #E9EFEC;
+    --cta-text: #16423C;
+    --hover-bg: #C4DAD2; 
+    --hover-text: #16423C;
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    --transition-speed: 0.4s;
+}
+
+body.dark-mode {
+    /* Mode Gelap */
+    --bg-dominant: #16423C;
+    --bg-accent: #0F2925;
+    --text-primary: #E9EFEC;
+    --text-secondary: #6A9C89;
+    --card-bg: #2a5a50;
+    --cta-bg: #6A9C89;
+    --cta-text: #E9EFEC;
+    --hover-bg: #6A9C89;
+    --hover-text: #E9EFEC;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-accent);
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Latar Belakang Animasi */
+#background-animation {
+    background: var(--bg-accent);
+    transition: background-color var(--transition-speed);
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#circle-small, #circle-medium, #circle-large, #circle-xlarge, #circle-xxlarge {
+    animation: circle-scale 5s ease-in-out infinite alternate;
+    position: absolute;
+    background: var(--bg-dominant);
+    border-radius: 50%;
+    transition: background-color var(--transition-speed);
+}
+#circle-small { animation-delay: 0s; top: 200px; left: -150px; width: 300px; height: 300px; opacity: 0.2; }
+#circle-medium { animation-delay: 0.3s; top: 50px; left: -300px; width: 600px; height: 600px; opacity: 0.15; }
+#circle-large { animation-delay: 0.6s; top: -100px; left: -450px; width: 900px; height: 900px; opacity: 0.1; }
+#circle-xlarge { animation-delay: 0.9s; top: -250px; left: -600px; width: 1200px; height: 1200px; opacity: 0.08; }
+#circle-xxlarge { animation-delay: 1.2s; top: -400px; left: -750px; width: 1500px; height: 1500px; opacity: 0.05; }
+
+@keyframes circle-scale {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.1); }
+}
+
+/* Konten Halaman */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 100px 0; background-color: transparent; }
+.light-bg { background-color: rgba(196, 218, 210, 0.1); }
+.section-title { text-align: center; font-size: 2.8rem; color: var(--text-primary); margin-bottom: 50px; }
+.section-icon { text-align: center; font-size: 2.5rem; color: var(--text-secondary); margin-bottom: 20px; }
+.light-bg h3 { color: var(--text-primary); }
+.light-bg p { color: var(--text-secondary); }
+
+/* Header */
+.header { background-color: transparent; padding: 20px 0; position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; }
+.header.scrolled { background-color: rgba(22, 66, 60, 0.8); backdrop-filter: blur(10px); position: sticky; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.8rem; font-weight: bold; color: var(--text-primary); }
+.nav ul { list-style: none; display: flex; gap: 30px; }
+.nav a { text-decoration: none; color: var(--text-secondary); font-weight: bold; transition: color var(--transition-speed); }
+.nav a:hover { color: var(--text-primary); }
+.header-controls { display: flex; align-items: center; gap: 15px; }
+
+/* Tombol Dark Mode */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 5px;
+}
+.theme-toggle-button .fa-sun { display: none; }
+.theme-toggle-button .fa-moon { display: block; }
+body.dark-mode .theme-toggle-button .fa-sun { display: block; }
+body.dark-mode .theme-toggle-button .fa-moon { display: none; }
+
+
+/* Tombol CTA */
+.cta-button, .main-cta { background-color: var(--cta-bg); color: var(--cta-text); padding: 10px 25px; text-decoration: none; border-radius: 50px; transition: all var(--transition-speed); font-weight: bold; }
+.cta-button:hover, .main-cta:hover { background-color: var(--hover-bg); color: var(--hover-text); transform: translateY(-3px); }
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+    padding-top: 80px;
+    background-color: var(--bg-dominant);
+    transition: background-color var(--transition-speed);
+}
+.hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.hero-text { max-width: 55%; }
+.hero-section h1 { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.2; }
+.hero-section p { font-size: 1.2rem; margin-bottom: 40px; color: var(--text-secondary); }
+.secondary-cta { border: 2px solid var(--text-primary); color: var(--text-primary); padding: 8px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all var(--transition-speed); }
+.secondary-cta:hover { background-color: var(--hover-bg); color: var(--hover-text); border-color: var(--hover-bg); }
+
+/* Kartu Hologram */
+.holographic-card {
+    width: 350px; height: 450px;
+    background: rgba(196, 218, 210, 0.1);
+    display: flex; justify-content: center; align-items: center;
+    position: relative; overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(233, 239, 236, 0.3);
+    backdrop-filter: blur(5px); transition: all 0.5s ease;
+}
+.hologram-icon { width: 100%; height: 100%; object-fit: cover; color: var(--text-primary); position: relative; z-index: 2; opacity: 0.8; transition: all 0.5s ease; }
+.holographic-card::before {
+    content: ''; position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(0deg, transparent, transparent 40%, var(--text-primary), transparent 60%, transparent);
+    transform-origin: center center;
+    animation: holographic-rotate 6s linear infinite;
+}
+.holographic-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 0 40px rgba(233, 239, 236, 0.5); }
+.holographic-card:hover .hologram-icon { opacity: 1; transform: scale(1.1); text-shadow: 0 0 20px var(--text-primary); }
+@keyframes holographic-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Grid dan Card */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+#value-prop .card, .customer-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease, background-color var(--transition-speed);
+}
+
+#value-prop .card {
+    border-top: 4px solid transparent;
+}
+#value-prop .card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    border-top-color: var(--text-primary);
+}
+.customer-card:hover { transform: translateY(-10px); }
+
+/* Bagian Tim Proyek */
+.team-container { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
+.team-member { text-align: center; width: 280px; }
+.team-photo-container {
+    position: relative; width: 200px; height: 200px;
+    margin: 0 auto 20px auto;
+    border-radius: 15px; overflow: hidden;
+    box-shadow: 0 5px 15px rgba(233, 239, 236, 0.2);
+    cursor: pointer;
+}
+.team-photo {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.team-photo.hover { position: absolute; top: 0; left: 0; opacity: 0; }
+.team-photo-container:hover .primary { transform: scale(1.1); }
+.team-photo-container:hover .hover { opacity: 1; transform: scale(1.1); }
+.team-name { color: var(--text-primary); font-size: 1.5rem; margin-bottom: 5px; }
+.team-role { color: var(--text-secondary); font-size: 1rem; }
+
+/* Kontak & Footer */
+.contact-container { text-align: center; }
+.contact-container p { color: var(--text-primary); }
+.contact-info { font-size: 1.1rem; margin: 30px 0; }
+.footer { background-color: var(--bg-accent); color: var(--text-secondary); text-align: center; padding: 40px 0; transition: background-color var(--transition-speed); }
+.footer-logo { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; color: var(--text-primary); }
+
+/* === DESAIN RESPONSIVE === */
+.hamburger { display: none; }
+
+/* Tampilan Tablet & HP */
+@media (max-width: 992px) {
+    .hero-container {
+        /* PERBAIKAN UTAMA ADA DI SINI */
+        flex-direction: column; /* Mengatur tata letak jadi vertikal (teks di atas, gambar di bawah) */
+        text-align: center;
+    }
+    .hero-text {
+        max-width: 100%;
+        order: 1; /* Memastikan teks adalah elemen pertama */
+    }
+    .holographic-card {
+        order: 2; /* Memastikan gambar adalah elemen kedua */
+        margin-top: 40px; /* Memberi jarak dari teks di atasnya */
+        width: 300px;
+        height: 300px;
+    }
+    .hologram-icon {
+        font-size: 6rem;
+    }
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Tampilan HP */
+@media (max-width: 768px) {
+    .section-title { font-size: 2.2rem; }
+    .nav { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--bg-accent); box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; transition: right var(--transition-speed) ease-in-out, background-color var(--transition-speed); }
+    .nav.active { right: 0; }
+    .nav ul { flex-direction: column; padding-top: 80px; align-items: center; width: 100%; }
+    .header .cta-button { display: none; }
+    .hamburger { display: block; cursor: pointer; background: none; border: none; z-index: 1001; }
+    .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: all var(--transition-speed) ease-in-out; }
+    .hamburger.active .bar { background-color: var(--text-primary); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hero-section { min-height: auto; padding: 120px 0 60px 0; }
+    .hero-section h1 { font-size: 2.5rem; }
+    .hero-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+}
