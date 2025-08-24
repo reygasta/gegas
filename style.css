@@ -208,28 +208,56 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 
 /* === DESAIN RESPONSIVE === */
 .hamburger { display: none; }
+
+/* Tampilan Tablet & HP */
 @media (max-width: 992px) {
-    .hero-container { flex-direction: column-reverse; text-align: center; }
-    .hero-text { max-width: 100%; margin-top: 40px; }
-    .holographic-card { order: 1; width: 300px; height: 300px; }
-    .hologram-icon { font-size: 6rem; }
-    .hero-section h1 { font-size: 3rem; }
-    .hero-buttons { justify-content: center; }
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text {
+        max-width: 100%;
+    }
+    .holographic-card {
+        margin-top: 40px; 
+        width: 300px;
+        height: 300px;
+    }
+    .hologram-icon {
+        font-size: 6rem;
+    }
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    /* PERUBAHAN DI SINI: Memastikan tombol tetap di tengah pada mode tablet */
+    .hero-buttons {
+        justify-content: center;
+    }
 }
+
+/* Tampilan HP */
 @media (max-width: 768px) {
     .section-title { font-size: 2.2rem; }
-    .nav { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--bg-accent); box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; transition: right var(--transition-speed) ease-in-out; }
+    .nav { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--bg-accent); box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; transition: right var(--transition-speed) ease-in-out, background-color var(--transition-speed); }
     .nav.active { right: 0; }
     .nav ul { flex-direction: column; padding-top: 80px; align-items: center; width: 100%; }
     .header .cta-button { display: none; }
     .hamburger { display: block; cursor: pointer; background: none; border: none; z-index: 1001; }
-    .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: transform 0.3s ease; }
+    .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: all var(--transition-speed) ease-in-out; }
+    .hamburger.active .bar { background-color: var(--text-primary); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .hero-section { min-height: auto; padding: 120px 0 60px 0; }
     .hero-section h1 { font-size: 2.5rem; }
-    .hero-buttons { flex-direction: row; justify-content: center; gap: 15px; }
+    /* PERUBAHAN UTAMA DI SINI: Mengubah tombol menjadi berdampingan */
+    .hero-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        align-items: center;
+    }
 }
 
 /* KEYFRAME BARU UNTUK EFEK FLICKER */
