@@ -213,14 +213,14 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 /* Tampilan Tablet & HP */
 @media (max-width: 992px) {
     .hero-container {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
     }
     .hero-text {
         max-width: 100%;
-        margin-top: 40px; 
     }
     .holographic-card {
+        margin-top: 40px; 
         width: 300px;
         height: 300px;
     }
@@ -229,6 +229,10 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
     }
     .hero-section h1 {
         font-size: 3rem;
+    }
+    /* PERUBAHAN DI SINI: Memastikan tombol tetap di tengah pada mode tablet */
+    .hero-buttons {
+        justify-content: center;
     }
 }
 
@@ -247,5 +251,12 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .hero-section { min-height: auto; padding: 120px 0 60px 0; }
     .hero-section h1 { font-size: 2.5rem; }
-    .hero-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        align-items: center;
+    }
 }
