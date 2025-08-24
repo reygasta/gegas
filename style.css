@@ -127,7 +127,12 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .hero-text { max-width: 55%; }
 .hero-section h1 { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.2; }
-.hero-section p { font-size: 1.2rem; margin-bottom: 40px; color: var(--text-secondary); }
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--text-secondary);
+    text-align: justify; /* PERUBAHAN DI SINI */
+}
 .secondary-cta { border: 2px solid var(--text-primary); color: var(--text-primary); padding: 8px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all var(--transition-speed); }
 .secondary-cta:hover { background-color: var(--hover-bg); color: var(--hover-text); border-color: var(--hover-bg); }
 
@@ -208,17 +213,14 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 /* Tampilan Tablet & HP */
 @media (max-width: 992px) {
     .hero-container {
-        /* PERBAIKAN UTAMA ADA DI SINI */
-        flex-direction: column; /* Mengatur tata letak jadi vertikal (teks di atas, gambar di bawah) */
+        flex-direction: column-reverse;
         text-align: center;
     }
     .hero-text {
         max-width: 100%;
-        order: 1; /* Memastikan teks adalah elemen pertama */
+        margin-top: 40px; 
     }
     .holographic-card {
-        order: 2; /* Memastikan gambar adalah elemen kedua */
-        margin-top: 40px; /* Memberi jarak dari teks di atasnya */
         width: 300px;
         height: 300px;
     }
