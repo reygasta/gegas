@@ -22,7 +22,7 @@ html {
     --hover-bg: #C4DAD2; 
     --hover-text: #16423C;
     --card-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    --transition-speed: 0.4s;
+    --transition-speed: 0.3s;
 }
 
 body.dark-mode {
@@ -38,20 +38,17 @@ body.dark-mode {
     --hover-text: #E9EFEC;
 }
 
-
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-accent);
     overflow-x: hidden;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 /* Latar Belakang Animasi */
 #background-animation {
     background: var(--bg-accent);
-    transition: background-color var(--transition-speed);
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1;
@@ -63,7 +60,7 @@ body {
     position: absolute;
     background: var(--bg-dominant);
     border-radius: 50%;
-    transition: background-color var(--transition-speed);
+    will-change: transform;
 }
 #circle-small { animation-delay: 0s; top: 200px; left: -150px; width: 300px; height: 300px; opacity: 0.2; }
 #circle-medium { animation-delay: 0.3s; top: 50px; left: -300px; width: 600px; height: 600px; opacity: 0.15; }
@@ -87,9 +84,26 @@ body {
 
 /* Header */
 .header { background-color: transparent; padding: 20px 0; position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; }
-.header.scrolled { background-color: rgba(22, 66, 60, 0.8); backdrop-filter: blur(10px); position: sticky; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.header.scrolled {
+    background-color: rgba(22, 66, 60, 0.85);
+    position: sticky;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
 .header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.8rem; font-weight: bold; color: var(--text-primary); }
+
+/* LOGO BARU DENGAN EFEK FLICKER */
+.logo {
+    font-size: 2.2rem;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    color: rgba(233, 239, 236, 0.5);
+    background: linear-gradient(90deg, rgba(233, 239, 236, 0.5), var(--text-primary), rgba(233, 239, 236, 0.5));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: flick 3s linear infinite;
+}
+
 .nav ul { list-style: none; display: flex; gap: 30px; }
 .nav a { text-decoration: none; color: var(--text-secondary); font-weight: bold; transition: color var(--transition-speed); }
 .nav a:hover { color: var(--text-primary); }
@@ -97,42 +111,30 @@ body {
 
 /* Tombol Dark Mode */
 .theme-toggle-button {
-    background: none;
-    border: none;
+    background: none; border: none;
     color: var(--text-primary);
-    cursor: pointer;
-    font-size: 1.4rem;
-    padding: 5px;
+    cursor: pointer; font-size: 1.4rem; padding: 5px;
 }
 .theme-toggle-button .fa-sun { display: none; }
 .theme-toggle-button .fa-moon { display: block; }
 body.dark-mode .theme-toggle-button .fa-sun { display: block; }
 body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 
-
 /* Tombol CTA */
-.cta-button, .main-cta { background-color: var(--cta-bg); color: var(--cta-text); padding: 10px 25px; text-decoration: none; border-radius: 50px; transition: all var(--transition-speed); font-weight: bold; }
+.cta-button, .main-cta { background-color: var(--cta-bg); color: var(--cta-text); padding: 10px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: transform var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed); }
 .cta-button:hover, .main-cta:hover { background-color: var(--hover-bg); color: var(--hover-text); transform: translateY(-3px); }
 
 /* Hero Section */
 .hero-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    min-height: 100vh; display: flex; align-items: center;
     color: var(--text-primary);
     padding-top: 80px;
     background-color: var(--bg-dominant);
-    transition: background-color var(--transition-speed);
 }
 .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .hero-text { max-width: 55%; }
-.hero-section h1 { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.2;text-align: left; }
-.hero-section p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    color: var(--text-secondary);
-    text-align: justify; /* PERUBAHAN DI SINI */
-}
+.hero-section h1 { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.2; text-align: left; }
+.hero-section p { font-size: 1.2rem; margin-bottom: 40px; color: var(--text-secondary); text-align: justify; }
 .secondary-cta { border: 2px solid var(--text-primary); color: var(--text-primary); padding: 8px 25px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all var(--transition-speed); }
 .secondary-cta:hover { background-color: var(--hover-bg); color: var(--hover-text); border-color: var(--hover-bg); }
 
@@ -142,17 +144,17 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
     background: rgba(196, 218, 210, 0.1);
     display: flex; justify-content: center; align-items: center;
     position: relative; overflow: hidden;
-    border-radius: 20px;
-    border: 1px solid rgba(233, 239, 236, 0.3);
-    backdrop-filter: blur(5px); transition: all 0.5s ease;
+    border-radius: 20px; border: 1px solid rgba(233, 239, 236, 0.3);
+    backdrop-filter: blur(5px); will-change: transform;
 }
-.hologram-icon { width: 100%; height: 100%; object-fit: cover; color: var(--text-primary); position: relative; z-index: 2; opacity: 0.8; transition: all 0.5s ease; }
+.hologram-icon { width: 100%; height: 100%; object-fit: cover; color: var(--text-primary); position: relative; z-index: 2; opacity: 0.8; transition: opacity 0.5s ease, transform 0.5s ease; }
 .holographic-card::before {
     content: ''; position: absolute;
     top: -50%; left: -50%; width: 200%; height: 200%;
     background: linear-gradient(0deg, transparent, transparent 40%, var(--text-primary), transparent 60%, transparent);
     transform-origin: center center;
     animation: holographic-rotate 6s linear infinite;
+    will-change: transform;
 }
 .holographic-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 0 40px rgba(233, 239, 236, 0.5); }
 .holographic-card:hover .hologram-icon { opacity: 1; transform: scale(1.1); text-shadow: 0 0 20px var(--text-primary); }
@@ -160,19 +162,16 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 
 /* Grid dan Card */
 .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-
-#value-prop .card, .customer-card {
+.card {
     background-color: var(--card-bg);
     padding: 30px;
     border-radius: 15px;
     box-shadow: var(--card-shadow);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease, background-color var(--transition-speed);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    will-change: transform, box-shadow;
 }
-
-#value-prop .card {
-    border-top: 4px solid transparent;
-}
+#value-prop .card { border-top: 4px solid transparent; transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-top-color var(--transition-speed); }
 #value-prop .card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 15px 25px rgba(0,0,0,0.3);
@@ -204,59 +203,41 @@ body.dark-mode .theme-toggle-button .fa-moon { display: none; }
 .contact-container { text-align: center; }
 .contact-container p { color: var(--text-primary); }
 .contact-info { font-size: 1.1rem; margin: 30px 0; }
-.footer { background-color: var(--bg-accent); color: var(--text-secondary); text-align: center; padding: 40px 0; transition: background-color var(--transition-speed); }
+.footer { background-color: var(--bg-accent); color: var(--text-secondary); text-align: center; padding: 40px 0; }
 .footer-logo { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; color: var(--text-primary); }
 
 /* === DESAIN RESPONSIVE === */
 .hamburger { display: none; }
-
-/* Tampilan Tablet & HP */
 @media (max-width: 992px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .hero-text {
-        max-width: 100%;
-    }
-    .holographic-card {
-        margin-top: 40px; 
-        width: 300px;
-        height: 300px;
-    }
-    .hologram-icon {
-        font-size: 6rem;
-    }
-    .hero-section h1 {
-        font-size: 3rem;
-    }
-    /* PERUBAHAN DI SINI: Memastikan tombol tetap di tengah pada mode tablet */
-    .hero-buttons {
-        justify-content: center;
-    }
+    .hero-container { flex-direction: column-reverse; text-align: center; }
+    .hero-text { max-width: 100%; margin-top: 40px; }
+    .holographic-card { order: 1; width: 300px; height: 300px; }
+    .hologram-icon { font-size: 6rem; }
+    .hero-section h1 { font-size: 3rem; }
+    .hero-buttons { justify-content: center; }
 }
-
-/* Tampilan HP */
 @media (max-width: 768px) {
     .section-title { font-size: 2.2rem; }
-    .nav { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--bg-accent); box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; transition: right var(--transition-speed) ease-in-out, background-color var(--transition-speed); }
+    .nav { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--bg-accent); box-shadow: -5px 0 15px rgba(0,0,0,0.2); flex-direction: column; transition: right var(--transition-speed) ease-in-out; }
     .nav.active { right: 0; }
     .nav ul { flex-direction: column; padding-top: 80px; align-items: center; width: 100%; }
     .header .cta-button { display: none; }
     .hamburger { display: block; cursor: pointer; background: none; border: none; z-index: 1001; }
-    .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: all var(--transition-speed) ease-in-out; }
-    .hamburger.active .bar { background-color: var(--text-primary); }
+    .hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: transform 0.3s ease; }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .hero-section { min-height: auto; padding: 120px 0 60px 0; }
     .hero-section h1 { font-size: 2.5rem; }
+    .hero-buttons { flex-direction: row; justify-content: center; gap: 15px; }
+}
 
-    .hero-buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-        align-items: center;
+/* KEYFRAME BARU UNTUK EFEK FLICKER */
+@keyframes flick {
+    0% {
+        background-position: 200% center;
+    }
+    100% {
+        background-position: -200% center;
     }
 }
